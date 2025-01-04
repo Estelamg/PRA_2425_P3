@@ -17,7 +17,7 @@ class HashTable: public Dict<V> {
 		int h(std::string key){
 			int suma = 0;
 			for(char c : key){
-				suma += int(c);
+				suma += static_cast<int>(c);
 			}
 
 			return suma % max;
@@ -38,8 +38,8 @@ class HashTable: public Dict<V> {
 
 		void insert(std::string key, V value) override{
 			int index = h(key);
-			for(const auto& entry : table[index]){
-				if(entry.key == key){
+			for(int i=0; i < table[index].size(); ++i){
+				if(table[index].get(i).key == key){
 					throw std::runtime_error("La clave ya existe");
 				}
 			}
@@ -51,9 +51,9 @@ class HashTable: public Dict<V> {
 
 		V search(std::string key) const override{
 			int index = h(key);
-			for(const auto& entry : table[index]){
-				if(entry.key == key){
-					return entry.value;
+			for(int i=0; i < table[index].size(); ++i){
+				if(table[index].get(i).key == key){
+					return table[index].get(i).value;
 				}
 			}
 
@@ -62,10 +62,10 @@ class HashTable: public Dict<V> {
 
 		V remove(std::string key) override{
 			int index = h(key);
-			for(auto it = table[index].begin(); it != table[index].end(); ++it){
-				if(it->key == key){
-					V value = it->value;
-					table[index].erase(it);
+			for(int i=0; i < table[index].size(); ++i){
+				if(table[index].get(i).key == key){
+					V value = table[index].get(i).value;
+					table[index].remove(i);
 					n--;
 					return value;
 				}
@@ -81,8 +81,8 @@ class HashTable: public Dict<V> {
 		friend std::ostream& operator<<(std::ostream &out, const HashTable<V> &th){
 			for(int i=0; i < th.max; i++){
 				out << "Cubeta " << i << ": ";
-				for(const auto& entry : th.table[i]){
-					out << entry << " ";
+				for(int j=0; j < th.table[i].size(); ++j){
+					out << th.table[i].get(j) << " ";
 				}
 				out << std::endl;
 			}
