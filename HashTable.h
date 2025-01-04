@@ -8,13 +8,13 @@
 #include "/home/emargar1/PRA/P1/PRA_2425_P1/ListLinked.h" 
 
 template <typename V>
-class HashTable: public Dict<V> {
+class HashTable : public Dict<V> {
 	private:
 		int n;		//nº elementos almacenados
 		int max; 	//nº cubetas
 		ListLinked<TableEntry<V>>* table;
 		
-		int h(std::string key){
+		int h(std::string key) const{
 			int suma = 0;
 			for(char c : key){
 				suma += static_cast<int>(c);
