@@ -32,7 +32,7 @@ class HashTable : public Dict<V> {
 			delete[] table;
 		}
 
-		int capacity(){
+		int capacity() const{
 			return max;
 		}
 
@@ -79,7 +79,9 @@ class HashTable : public Dict<V> {
 		}
 
 		friend std::ostream& operator<<(std::ostream &out, const HashTable<V> &th){
-			for(int i=0; i < th.max; i++){
+			out << "HashTable [elementos: " << th.entries() << ", capacidad: " << th.capacity() << "]" << std::endl;
+			out << "====================================" << std::endl << std::endl;
+			for(int i=0; i < th.max; ++i){
 				out << "Cubeta " << i << ": ";
 				for(int j=0; j < th.table[i].size(); ++j){
 					out << th.table[i].get(j) << " ";
