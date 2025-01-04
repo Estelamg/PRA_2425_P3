@@ -23,7 +23,7 @@ class TableEntry {
 		    }
 
 		    friend std::ostream& operator<<(std::ostream &out, const TableEntry<V> &te){
-			    out << "Contenido: [Clave -> " << te.key << ", Valor -> " << te.value << "]";
+			    out << "[Clave -> " << te.key << ", Valor -> " << te.value << "]";
 			    return out;
 		    }
 };
