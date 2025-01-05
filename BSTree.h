@@ -31,7 +31,7 @@ class BSTree {
 			}else if(n->elem < e){
 				n->right = insert(n->right, e);
 			}else{
-				n->lef = insert(n->left,e);
+				n->left = insert(n->left,e);
 			}
 
 			return n;
