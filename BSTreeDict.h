@@ -4,8 +4,8 @@
 #include <ostream>
 #include <stdexcept>
 #include "Dict.h"
-#include "BSTree.h"
 #include "TableEntry.h"
+#include "BSTree.h"
 
 template <typename V>
 class BSTreeDict: public Dict<V> {
@@ -25,7 +25,7 @@ class BSTreeDict: public Dict<V> {
 		
 		void insert(std::string key, V value) override{
 			TableEntry<V> entry(key, value);
-			tree->insert;
+			tree->insert(entry);
 			entryCount++;
 		}
 
